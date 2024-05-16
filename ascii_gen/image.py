@@ -17,28 +17,30 @@ def image_to_ascii_art(
 
     width, height = img.size
     aspect_ratio = height / width
-    new_width = 25
+    new_width = 60
     new_height = aspect_ratio * new_width * 0.55
     img = img.resize((new_width, int(new_height)))
 
     pixels = img.getdata()
 
-    chars = ["*", "S", "#", "&", "@", "$", "%", "*", "!", ":", "."]
+       #chars = ["*", "S", "#", "&", "@", "$", "%", "*", "!", ":", "."]
+    chars = ["#", "#", "#", ":", ":", ":", ".", ".", ".", " ", " "]
     new_pixels = [chars[pixel // 25] for pixel in pixels]
-    new_pixels = "".join(new_pixels)
+    new_pixels = "".join(new_pixels) #concatena el array en un str
 
-    new_pixels_count = len(new_pixels)
+    new_pixels_count = len(new_pixels) #lenght
     ascii_image = [
-        new_pixels[index : index + new_width]
+        new_pixels[index : index + new_width] 
         for index in range(0, new_pixels_count, new_width)
-    ]
-    ascii_image = "\n".join(ascii_image)
+    ] #Mapping str to matrix, sublist por each row and new_width pace 
+    ascii_image = "\n".join(ascii_image) #saltos de linea
+    return ascii_image
 
+
+"""
     with open(f"{output_file}.txt", "w") as f:
         f.write(ascii_image)
- 
-
-    return ascii_image
+""" 
 
 """
 # Function to convert image to ASCII art
@@ -75,10 +77,10 @@ ascii_art_modified = "".join(char_map.get(char, char) for char in ascii_art)
 # Print the ASCII art
 """
 # Path to the image fil
-image_path = "image2.png"
+image_path = "image5.webp"
 
 # Convert the image to ASCII art
 ascii_art = image_to_ascii_art(image_path)
 
-print(Fore.GREEN + ascii_art + Style.RESET_ALL)
+print(Fore.CYAN + ascii_art + Style.RESET_ALL)
     
